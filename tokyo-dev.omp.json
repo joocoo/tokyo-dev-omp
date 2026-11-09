@@ -1,0 +1,549 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "leading_diamond": "<#7eb8da>\u250f</>",
+      "segments": [
+        {
+          "foreground": "#7eb8da",
+          "options": {
+            "time_format": "01/02/2006 @ 3:04:05 PM MST"
+          },
+          "style": "diamond",
+          "template": "[<#ffffff>\uf073</> {{ .CurrentDate | date .Format }}]",
+          "type": "time"
+        },
+        {
+          "foreground": "#7eb8da",
+          "style": "plain",
+          "template": "[<#ffffff>\ueb99</> {{ .UserName }} :: <#ffffff>\uf108</> {{ .HostName }}]",
+          "type": "session"
+        },
+        {
+          "foreground": "#be9ddf",
+          "style": "diamond",
+          "template": "[<#ffffff>\ue266</> RAM: {{ (div ((sub .PhysicalTotalMemory .PhysicalAvailableMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB]",
+          "type": "sysinfo"
+        },
+        {
+          "foreground": "#f36943",
+          "foreground_templates": [
+            "{{if eq \"Charging\" .State.String}}#40c4ff{{end}}",
+            "{{if eq \"Discharging\" .State.String}}#ff5722{{end}}",
+            "{{if eq \"Full\" .State.String}}#4caf50{{end}}"
+          ],
+          "options": {
+            "charged_icon": "<#ffffff>\ue22f</> ",
+            "charging_icon": "\ueb2d ",
+            "discharging_icon": "<#ffff00>\uf244</> "
+          },
+          "style": "plain",
+          "template": "[{{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }}{{ .Error }}\uf295]",
+          "type": "battery"
+        },
+        {
+          "foreground": "#be9ddf",
+          "options": {
+            "style": "dallas",
+            "threshold": 0
+          },
+          "style": "diamond",
+          "template": "[<#ffffff>\uf252</> {{ .FormattedMs }}s]",
+          "type": "executiontime"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "leading_diamond": "<#7eb8da>\u2523</>",
+      "segments": [
+        {
+          "foreground": "#7eb8da",
+          "style": "diamond",
+          "template": "[<#ffffff>\uebd8</> Subscription: <#ffff00>{{ .Name }}</>]",
+          "type": "az"
+        },
+        {
+          "foreground": "#7eb8da",
+          "style": "diamond",
+          "template": "[<#ffffff>\uebd8</> Azure Developer CLI Environment: <#ffff00>{{ .DefaultEnvironment  }}</> :: <#ffff00>{{ .Version }}</>]",
+          "type": "azd"
+        },
+        {
+          "foreground": "#7eb8da",
+          "style": "diamond",
+          "template": "[<#ffffff>\uf270</> <#ffff00>{{ .Profile }}</>{{if .Region}}@<#ffff00>{{ .Region }}</>{{ end }}]",
+          "type": "aws"
+        },
+        {
+          "foreground": "#7eb8da",
+          "style": "diamond",
+          "template": "[<#ffffff>\uf1a0</> <#ffff00>{{ .Project }}</> :: <#ffff00>{{.Account}}</>]",
+          "type": "gcp"
+        },
+        {
+          "foreground": "#ffa5d8",
+          "style": "diamond",
+          "template": "[<#ffffff>\udb84\udcfe</> <#ffff00>{{.Context}}</>{{if .Namespace}} :: <#ffff00>{{.Namespace}}</>{{end}}]",
+          "type": "kubectl"
+        },
+        {
+          "foreground": "#ffa5d8",
+          "style": "diamond",
+          "template": "{{ if or .Error .Name .Target }}[{{ if .Error }}{{ .Error }}{{ else }}{{ if .Name }}<#ffffff>\uf487</> {{ .Name }}{{ end }}{{ if .Target }} {{ .Target }}{{ end }}{{ end }}]{{ end }}",
+          "type": "project"
+        },
+        {
+          "type": "python",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ if or .Full .Venv }}[<#ffffff>\ue235</> {{ .Full }}{{ if .Venv }}{{ if .Full }} \u00b7 {{ end }}{{ .Venv }}{{ end }}]{{ end }}",
+          "options": {
+            "display_mode": "context",
+            "fetch_virtual_env": true,
+            "home_enabled": true
+          }
+        },
+        {
+          "type": "node",
+          "style": "diamond",
+          "foreground": "#7eb8da",
+          "template": "{{ with .Full }}[<#ffffff>\ue718</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "go",
+          "style": "diamond",
+          "foreground": "#7eb8da",
+          "template": "{{ with .Full }}[<#ffffff>\ue626</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "rust",
+          "style": "diamond",
+          "foreground": "#be9ddf",
+          "template": "{{ with .Full }}[<#ffffff>\ue7a8</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "clojure",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue768</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "crystal",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue62f</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "dart",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue798</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "dotnet",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue77f</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "elixir",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue62d</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "flutter",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue28e</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "fortran",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\udb84\ude1a</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "haskell",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue61f</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "java",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue738</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "julia",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue624</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "kotlin",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue634</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "lua",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue620</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "nim",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue841</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "ocaml",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue67a</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "perl",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue769</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "php",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue73d</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "r",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue68a</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "ruby",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue791</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "swift",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue755</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "v",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue6ac</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "vala",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue69e</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "zig",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue6a9</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files"
+          }
+        },
+        {
+          "type": "cmake",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue794</> {{ . }}]{{ end }}",
+          "options": {
+            "display_mode": "files",
+            "project_files": [
+              "CMakeLists.txt"
+            ]
+          }
+        },
+        {
+          "type": "language",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue771</> {{ . }}]{{ end }}",
+          "options": {
+            "name": "c",
+            "display_mode": "files",
+            "extensions": [
+              "*.c"
+            ],
+            "tools": [
+              {
+                "name": "cc",
+                "executable": "cc",
+                "args": [
+                  "--version"
+                ],
+                "regex": "^[^\\r\\n]*?(?P<version>\\d+\\.\\d+(?:\\.\\d+)?)"
+              },
+              {
+                "name": "clang",
+                "executable": "clang",
+                "args": [
+                  "--version"
+                ],
+                "regex": "^[^\\r\\n]*?(?P<version>\\d+\\.\\d+(?:\\.\\d+)?)"
+              },
+              {
+                "name": "gcc",
+                "executable": "gcc",
+                "args": [
+                  "--version"
+                ],
+                "regex": "^[^\\r\\n]*?(?P<version>\\d+\\.\\d+(?:\\.\\d+)?)"
+              }
+            ]
+          }
+        },
+        {
+          "type": "language",
+          "style": "diamond",
+          "foreground": "#98bfad",
+          "template": "{{ with .Full }}[<#ffffff>\ue7a3</> {{ . }}]{{ end }}",
+          "options": {
+            "name": "cpp",
+            "display_mode": "files",
+            "extensions": [
+              "*.cpp",
+              "*.cc",
+              "*.cxx",
+              "*.c++",
+              "*.cppm",
+              "*.ixx",
+              "*.hpp",
+              "*.hh",
+              "*.hxx",
+              "*.h++"
+            ],
+            "tools": [
+              {
+                "name": "c++",
+                "executable": "c++",
+                "args": [
+                  "--version"
+                ],
+                "regex": "^[^\\r\\n]*?(?P<version>\\d+\\.\\d+(?:\\.\\d+)?)"
+              },
+              {
+                "name": "clang++",
+                "executable": "clang++",
+                "args": [
+                  "--version"
+                ],
+                "regex": "^[^\\r\\n]*?(?P<version>\\d+\\.\\d+(?:\\.\\d+)?)"
+              },
+              {
+                "name": "g++",
+                "executable": "g++",
+                "args": [
+                  "--version"
+                ],
+                "regex": "^[^\\r\\n]*?(?P<version>\\d+\\.\\d+(?:\\.\\d+)?)"
+              }
+            ]
+          }
+        },
+        {
+          "type": "docker",
+          "style": "diamond",
+          "foreground": "#7eb8da",
+          "template": "[<#ffffff>\uf308</>{{ with .Context }} {{ if contains \"://\" . }}remote{{ else }}{{ . }}{{ end }}{{ end }}]",
+          "options": {
+            "display_mode": "files",
+            "fetch_context": true,
+            "extensions": [
+              "Dockerfile",
+              "Dockerfile.*",
+              "*.Dockerfile",
+              "compose.yml",
+              "compose.yaml",
+              "docker-compose.yml",
+              "docker-compose.yaml"
+            ]
+          }
+        },
+        {
+          "type": "language",
+          "style": "diamond",
+          "foreground": "#be9ddf",
+          "template": "{{ with .Full }}[<#ffffff>\ue866</> {{ . }}]{{ end }}",
+          "options": {
+            "name": "podman",
+            "display_mode": "files",
+            "extensions": [
+              "Containerfile",
+              "Containerfile.*",
+              "*.container",
+              "*.pod",
+              "*.kube",
+              "compose.yml",
+              "compose.yaml",
+              "docker-compose.yml",
+              "docker-compose.yaml"
+            ],
+            "tools": [
+              {
+                "name": "podman",
+                "executable": "podman",
+                "args": [
+                  "--version"
+                ],
+                "regex": "(?i)^podman version (?P<version>\\d+\\.\\d+\\.\\d+(?:[-+~][0-9a-z.+~-]+)?)"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "leading_diamond": "<#7eb8da>\u2523</>",
+      "segments": [
+        {
+          "foreground": "#7eb8da",
+          "options": {
+            "style": "full"
+          },
+          "style": "diamond",
+          "template": "[<#ffffff>\uf115</> <#98bfad>{{ .Path }}</>]",
+          "type": "path"
+        },
+        {
+          "foreground": "#ffa5d8",
+          "style": "plain",
+          "template": "[<#ffffff>{{ .UpstreamIcon }} </>{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <#ffffff>\uf044</> {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} <#ffffff>\uf046</> {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} <#ffffff>\ueb4b</> {{ .StashCount }}{{ end }}]",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "leading_diamond": "<#7eb8da>\u2514\u2500</>",
+      "segments": [
+        {
+          "style": "diamond",
+          "template": "<#ffff00>[#]</>",
+          "type": "root"
+        },
+        {
+          "foreground": "#ffa5d8",
+          "style": "diamond",
+          "template": "[<#ffffff>\uea6c</> Error, check your command]",
+          "type": "status"
+        },
+        {
+          "style": "diamond",
+          "template": ">",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "final_space": true,
+  "secondary_prompt": {
+    "background": "transparent",
+    "template": " "
+  },
+  "valid_line": {
+    "background": "transparent",
+    "template": "> "
+  },
+  "error_line": {
+    "background": "transparent",
+    "template": "<#ff0000>\uea87</> "
+  },
+  "version": 4
+}
